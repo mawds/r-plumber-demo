@@ -36,5 +36,3 @@ example_data <- tribble(~carat, ~color, ~cut,
 exp(predict(mod_diamond, example_data, interval = "pred"))
 
 
-
-
