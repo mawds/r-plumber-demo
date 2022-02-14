@@ -19,8 +19,8 @@ factor_levels <- diamonds2 %>%
   lapply(levels)
 
 # Objects we need to make predictions
-saveRDS(mod_diamond, "diamondpredict/mod_diamond.rds")
-saveRDS(factor_levels, "diamondpredict/factor_levels.rds")
+saveRDS(mod_diamond, "diamondpredict/data/mod_diamond.rds")
+saveRDS(factor_levels, "diamondpredict/data/factor_levels.rds")
 
 
 

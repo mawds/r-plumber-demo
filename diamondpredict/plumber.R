@@ -4,8 +4,8 @@ library(tibble)
 library(dplyr)
 
 # Read in objects required for predictions
-mod_diamond <- readRDS("mod_diamond.rds")
-factor_levels <- readRDS("factor_levels.rds")
+mod_diamond <- readRDS("data/mod_diamond.rds")
+factor_levels <- readRDS("data/factor_levels.rds")
 
 #* @apiTitle Plumber Example API
 #* @apiDescription This API predicts the value of a diamond
