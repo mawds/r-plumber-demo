@@ -58,8 +58,8 @@ get_predictions <- function(indata, interval = "none") {
 
 #* Predict the value of a diamond
 #* @param carat:dbl The number of carats
-#* @param color The color of the diamond (D-J)
-#* @param cut The cut of the diamond ("Fair", "Good", "Very Good", "Premium", "Ideal")
+#* @param color:string The color of the diamond (D-J)
+#* @param cut:string The cut of the diamond ("Fair", "Good", "Very Good", "Premium", "Ideal")
 #* @post /predict
 function(carat, color, cut) {
 
@@ -79,7 +79,7 @@ function(carat, color, cut) {
 #* Predict the value of several diamonds
 #* @param carat:[dbl] The number of carats
 #* @param color:[string] The color of the diamond (D-J)
-#* @param cut:[cut] The cut of the diamond ("Fair", "Good", "Very Good", "Premium", "Ideal")
+#* @param cut:[string] The cut of the diamond ("Fair", "Good", "Very Good", "Premium", "Ideal")
 #* @post /predict_bulk
 function(carat, color, cut) {
 
