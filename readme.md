@@ -17,32 +17,6 @@ Build docker container with:
 docker build -t diamondpredict .
 ```
 
-Go to the "deployment" section of this document
-
-
-## University of Manchester virtual machines
-
-UoM virtual machine doesn't have direct web access, so we need to set up 
-the proxy environment variables - did this using method 2, here:
-https://www.thegeekdiary.com/how-to-configure-docker-to-use-proxy/
-
-So `/etc/systemd/system/docker.service.d/http-proxy.conf` contains:
-
-```
-[Service]
-Environment="HTTP_PROXY=http://webproxy.its.manchester.ac.uk:3128/"
-Environment="HTTPS_PROXY=http://webproxy.its.manchester.ac.uk:3128/
-```
-
-(Note - HTTPS_PROXY is http:// too - *not* https://)
-
-Build docker container with:
-
-```
-docker build --build-arg http_proxy=http://webproxy.its.manchester.ac.uk:3128/ --build-arg https_proxy=http://webproxy.its.manchester.ac.uk:3128/  -t diamondpredict .
-```
-
-
 ## Deployment
 
 To move to another machine:
