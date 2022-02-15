@@ -1,0 +1,166 @@
+---
+title: "Using Docker for deploying R APIs"
+author: "David Mawdsley"
+date: "15/02/2022"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+
+diamonds <- ggplot2::diamonds
+```
+
+## Introduction
+
+* A walk through of using Docker to deploy an API written in R
+* Example is a modified version of a phase 2 assist
+
+* [Plumber](https://www.rplumber.io/) used to build API
+* [Docker](https://www.docker.com/) used to deploy
+* [nginx](https://www.nginx.com/) used to provide authentication and (eventually) https 
+
+
+## Example data
+
+Price of cut diamonds:
+
+* Carat - weight of diamond
+* Cut - quality of the cut (Fair, Good, Very Good, Premium, Ideal)
+* Colour - colour of the diamond (D (best) to J (worst))
+* Some other variables I didn't use
+
+
+`r nrow(diamonds)` observations
+
+## Example data
+
+```{r}
+diamonds %>% 
+  ggplot(aes(x = carat, y = price, colour = cut)) +
+  geom_point(alpha = 0.1) +
+  facet_wrap(~color)
+```
+
+## Fitted model
+
+```{r}
+
+diamonds2 <- diamonds %>%
+  mutate_if(is.factor, function(x) factor(x, ordered = FALSE)) %>%
+  # Work with price on log scale
+  mutate(lprice = log(price))
+
+
+mod_diamond <- lm(lprice ~ carat + color + cut , data = diamonds2)
+
+
+factor_levels <- diamonds2 %>%
+  select_if(is.factor) %>%
+  lapply(levels)
+```
+
+Linear model, using $\log(\mbox{price})$ as response:
+
+```{r}
+formula(mod_diamond)
+```
+
+$r^2=$ `r round(summary(mod_diamond)$r.squared,2)`
+
+
+Haven't done any model checking - can undoubtedly do better.
+
+## Model predictions
+
+* Pass a data.frame containing new values to `predict()`
+
+```{r, echo = TRUE}
+predictvals <- tribble(~carat, ~color, ~cut,
+                       1.5, "E", "Very Good") 
+exp(predict(mod_diamond, predictvals))
+exp(predict(mod_diamond, predictvals, interval = "pred"))
+
+```
+
+## Plumber
+
+
+(Closest Python equivalent is probably Flask)
+
+```{r, echo = TRUE, eval = FALSE}
+
+#* Return the sum of two numbers
+#* @param a The first number to add
+#* @param b The second number to add
+#* @post /sum
+function(a, b) {
+    as.numeric(a) + as.numeric(b)
+}
+
+```
+
+* Generates Swagger docs automatically.
+* R isn't ideal for APIs - single threaded.  
+  * Various workarounds.
+
+
+## Docker (1)
+
+* Container for code and runtime environment (_kind of_ like a VM)
+* Self-contained
+
+* Many pre-built images available; I used `rstudio/plumber`
+
+## Docker (2)
+
+```{r comment=''}
+cat(readLines('diamondpredict/Dockerfile'), sep = '\n')
+```
+
+## Docker (3)
+
+Build the container:
+
+```{r engine='bash', comment='', eval = FALSE, echo = TRUE}
+docker build -t diamondpredict .
+```
+
+Pulls in `rstudio/plumber`, and creates new "layers" as required. Cached.
+
+And run:
+
+```{r engine='bash', comment='', eval = FALSE, echo = TRUE}
+docker run -p 8000:8000 diamondpredict 
+```
+
+`-p 8000:8000` maps port 8000 in "dockerland" to port 8000 on the actual machine
+
+
+
+## Authentication
+
+* Reverse proxy - forwards requests to API from outside world
+* Using nginx to provide basic http authentication
+  * Could use other authentication methods
+* Can also be used to:
+  * Set up https access
+  * Load balance
+
+`docker-compose` sets up nginx container and internal network
+
+
+## Authentication (2)
+
+```{r comment=''}
+cat(readLines('diamondpredict/docker-compose.yml'), sep = '\n')
+```
+
+
+## Summary
+
+* Plumber provides an easy way for use to bolt an API onto our models
+* Docker makes it easier to share and deploy the API
+* Nginx lets us provide authentication, https, load balancing
+
