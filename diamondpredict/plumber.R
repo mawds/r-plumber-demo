@@ -10,7 +10,13 @@ factor_levels <- readRDS("data/factor_levels.rds")
 #* @apiTitle Plumber Example API
 #* @apiDescription This API predicts the value of a diamond
 
-
+#' Get model predictions
+#'
+#' @param indata Tibble containing our input data (>=1 rows), containing
+#' carat, color and cut
+#' @param interval Whether to include prediction interval in the results. Must be none or pred
+#'
+#' @return Model predictions
 get_predictions <- function(indata, interval = "none") {
 
   indata <- indata %>%
@@ -51,9 +57,6 @@ get_predictions <- function(indata, interval = "none") {
   return(predictions)
 
 }
-
-
-
 
 
 #* Predict the value of a diamond
