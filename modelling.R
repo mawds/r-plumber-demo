@@ -25,13 +25,10 @@ saveRDS(factor_levels, "diamondpredict/data/factor_levels.rds")
 
 
 # Example predictions
-
 example_data <- tribble(~carat, ~color, ~cut,
                         0.5, "E", "Good",
-                        2, "E", "Good"
-                        ) %>%
-  mutate(color = factor(color, levels = factor_levels$color),
-         cut = factor(cut, levels = factor_levels$cut))
+                        0.1, "E", "Fair"
+                        )
 
 exp(predict(mod_diamond, example_data, interval = "pred"))
 
