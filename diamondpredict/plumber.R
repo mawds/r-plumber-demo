@@ -7,7 +7,7 @@ library(dplyr)
 mod_diamond <- readRDS("data/mod_diamond.rds")
 factor_levels <- readRDS("data/factor_levels.rds")
 
-#* @apiTitle Plumber Example API
+#* @apiTitle Diamond prediction example
 #* @apiDescription This API predicts the value of a diamond
 
 #' Get model predictions
