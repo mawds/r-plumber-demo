@@ -106,22 +106,20 @@ function(a, b) {
   * Various workarounds.
 
 
-## Docker (1)
+## Docker
 
 * Container for code and runtime environment (_kind of_ like a VM)
 * Self-contained
 
 * Many pre-built images available; I used `rstudio/plumber`
 
-## Docker (2)
+## Dockerfile
 
 ```{r comment=''}
 cat(readLines('diamondpredict/Dockerfile'), sep = '\n')
 ```
 
-## Docker (3)
-
-Build the container:
+## Docker - Build the container:
 
 ```{r engine='bash', comment='', eval = FALSE, echo = TRUE}
 docker build -t diamondpredict .
@@ -132,10 +130,12 @@ Pulls in `rstudio/plumber`, and creates new "layers" as required. Cached.
 And run:
 
 ```{r engine='bash', comment='', eval = FALSE, echo = TRUE}
-docker run -p 8000:8000 diamondpredict 
+docker run -p 127.0.0.1:8000:8000 diamondpredict 
 ```
 
-`-p 8000:8000` maps port 8000 in "dockerland" to port 8000 on the actual machine
+`-p` option maps port 8000 in "dockerland" to port 8000 on the actual machine, listening on localhost
+
+
 
 
 
@@ -148,7 +148,7 @@ docker run -p 8000:8000 diamondpredict
   * Set up https access
   * Load balance
 
-`docker-compose` sets up nginx container and internal network
+`docker-compose` sets up nginx container and dockerland internal network
 
 
 ## Authentication (2)
