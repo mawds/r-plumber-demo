@@ -1,7 +1,7 @@
 ---
 title: "Using Docker for deploying R APIs"
 author: "David Mawdsley"
-date: "15/02/2022"
+date: "3 March 2022"
 output: ioslides_presentation
 ---
 
