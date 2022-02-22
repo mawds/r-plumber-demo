@@ -31,8 +31,9 @@ Price of cut diamonds:
 * Colour - colour of the diamond (D (best) to J (worst))
 * Some other variables I didn't use
 
-
 `r nrow(diamonds)` observations
+
+(Based on model in [R for Data Science](https://r4ds.had.co.nz/model-building.html))
 
 ## Example data
 
