@@ -1,15 +1,25 @@
-# API deployment notes:
+# Plumber/Docker demo
 
+This repo is a demo of building a simple API in R, using Plumber, and 
+Dockerising it to facilitate deployment. Some accompanying slides are 
+here https://mawds.github.io/r-plumber-demo/
+
+
+
+## API deployment notes:
 
 Written using plumber
 
 ## Building
 
+Run the modellling.R script - this will build a simple model, and save the
+objects required for the API in `./diamondpredict`
+
 To dockerise assuming you don't need a proxy for http access:
 
 Installed docker using: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
-Change into `callpredict` directory
+Change into `diamondpredict` directory
 
 Build docker container with:
 
@@ -36,7 +46,8 @@ Create a `.htpasswd` file; in same directory as `docker-compose.yml`:
 ```
 htpasswd -c .htpasswd username
 ```
-(On Ubuntu systems `htppasswd` is in apache2-utils package - `apt install apache2-utils`)    
+
+(On Ubuntu systems `htpasswd` is in apache2-utils package - `apt install apache2-utils`)    
 
 (default is user/forever)
 
