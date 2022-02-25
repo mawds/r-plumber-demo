@@ -159,6 +159,25 @@ cat(readLines('diamondpredict/docker-compose.yml'), sep = '\n')
 ```
 
 
+## Moving to another system
+
+Dump the container to a file:
+
+```{bash, echo = TRUE, eval = FALSE}
+docker save diamondpredict:latest |bzip2 > diamondpredict.tar.bz2
+```
+
+Move file to new system...
+
+Load with:
+
+```{bash, echo = TRUE, eval = FALSE}
+docker load -i diamondpredict.tar.bz2
+```
+
+(Ideally you'd use a Docker Hub or a private Docker Registry)
+
+
 ## Summary
 
 * Plumber provides an easy way for use to bolt an API onto our models
