@@ -15,12 +15,12 @@ jobs:
     - uses: r-lib/actions/setup-pandoc@v1
     - uses: r-lib/actions/setup-tinytex@v1
     - name: Install rmarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
+      run: Rscript -e 'install.packages("rmarkdown")'
     - name: Render my document to all types
-        run: Rscript -e 'rmarkdown::render("docs/index.Rmd", output_format = "all")'
+      run: Rscript -e 'rmarkdown::render("docs/index.Rmd", output_format = "all")'
     - name: Commit results
-        run: |
-            git add docs/index*
-            git commit -m 'Re-build slides' || echo "No changes to commit"
-            git push origin || echo "No changes to commit"
+      run: |
+          git add docs/index*
+          git commit -m 'Re-build slides' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
 
