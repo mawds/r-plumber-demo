@@ -4,10 +4,10 @@ on:
   pull_request:
     branches: [main, master]
 
-name: Render-slides
+name: render-slides
 
 jobs:
-  Render-slides:
+  render-slides:
     name: Render slides
     runs-on: ubuntu-latest
     steps:
