@@ -3,7 +3,7 @@ services:
         diamondpredict:
                 image: diamondpredict
                 command: /plumber.R
-                restart: always
+                restart: "no"
         nginx:
                 image: nginx:1.9
                 ports:
