@@ -35,6 +35,9 @@ To move to another machine:
 
 Move tar.bz2 file, docker-compose.yml and nginx.conf to target machine
 
+
+(Ideally you'd use a Docker Hub or a private Docker Registry, but this is easier)
+
 Load with:
 
 `docker load -i diamondpredict.tar.bz2`
