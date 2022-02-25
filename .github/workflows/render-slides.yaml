@@ -7,7 +7,6 @@ on:
 name: Render-slides
 
 jobs:
-  render:
   name: Render slides
   runs-on: ubuntu-latest
   steps:
