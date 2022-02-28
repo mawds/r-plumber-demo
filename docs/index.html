@@ -3203,6 +3203,7 @@ slide:not(.current) .plotly.html-widget{
 <li><p><a href='https://www.rplumber.io/' title=''>Plumber</a> used to build API</p></li>
 <li><p><a href='https://www.docker.com/' title=''>Docker</a> used to deploy</p></li>
 <li><p><a href='https://www.nginx.com/' title=''>nginx</a> used to provide authentication and (eventually) https</p></li>
+<li><p>(Bonus feature) - these slides are rendered using <a href='https://github.com/features/actions' title=''>Github Actions</a></p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Example data</h2></hgroup><article  id="example-data">
@@ -3364,6 +3365,20 @@ services:
 <li>Plumber provides an easy way for use to bolt an API onto our models</li>
 <li>Docker makes it easier to share and deploy the API</li>
 <li>Nginx lets us provide authentication, https, load balancing</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>(Bonus) Github Actions</h2></hgroup><article  id="bonus-github-actions">
+
+<ul>
+<li>R Markdown slides are rendered to html and published using Github Pages</li>
+<li>Github Actions:
+
+<ul>
+<li>Set up R environment (using renv \(\approx\) Python’s <code>venv</code>)</li>
+<li>Render slides</li>
+<li>Commit</li>
+<li>Triggers Github pages &ldquo;publish&rdquo; workflow</li>
+</ul></li>
 </ul></article></slide>
 
 
