@@ -4,7 +4,15 @@ This repo is a demo of building a simple API in R, using Plumber, and
 Dockerising it to facilitate deployment. Some accompanying slides are 
 here https://mawds.github.io/r-plumber-demo/
 
-These are built from `doc/index.Rmd` - following the instructions at https://github.com/tgerke/rmd-with-ci
+
+## Github actions
+
+As an experiment in using Github actions, the slides are rendered as part
+of a GH Action workflow.  These are built from `doc/index.Rmd` - 
+following the instructions at https://github.com/tgerke/rmd-with-ci, with some
+modifications to use https://github.com/marketplace/actions/add-commit to commit
+the resulting html file.
+
 
 ## API deployment notes:
 
