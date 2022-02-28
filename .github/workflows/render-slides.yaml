@@ -24,9 +24,15 @@ jobs:
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Render my document to all types
         run: Rscript -e 'rmarkdown::render("docs/index.Rmd", output_format = "all")'
-      - name: Commit results
-        run: |
-            git add docs/index*
-            git commit -m 'Re-build slides' || echo "No changes to commit"
-            git push origin || echo "No changes to commit"
+
+      - uses: EndBug/add-and-commit@v8 # You can change this to use a specific version.
+        with:
+          add: 'docs/index*'
+          author_name: David Mawdsley
+          author_email: david.mawdsley@manchester.ac.uk
+          jdefault_author: github_actor
+          message: 'Render slides (GH action)'
+          pathspec_error_handling: exitImmediately
+
+
 
