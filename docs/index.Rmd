@@ -191,7 +191,7 @@ docker load -i diamondpredict.tar.bz2
 
 * R Markdown slides are rendered to html and published using Github Pages
 * Github Actions:
-  * Set up R environment (using renv $\approx$ Python's `venv`)
+  * Set up R environment (using `renv` $\approx$ Python's `venv`)
   * Render slides
   * Commit
   * Triggers Github pages "publish" workflow
