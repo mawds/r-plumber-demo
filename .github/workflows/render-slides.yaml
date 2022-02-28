@@ -22,13 +22,15 @@ jobs:
       - uses: r-lib/actions/setup-renv@v1
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
-      - name: Render my document to all types
-        run: Rscript -e 'rmarkdown::render("docs/index.Rmd", output_format = "all")'
 
       - uses: actions/checkout@v2
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Render my document to all types
+        run: Rscript -e 'rmarkdown::render("docs/index.Rmd", output_format = "all")'
+
 
       - uses: EndBug/add-and-commit@v8 # You can change this to use a specific version.
         with:
