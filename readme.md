@@ -4,7 +4,7 @@ This repo is a demo of building a simple API in R, using Plumber, and
 Dockerising it to facilitate deployment. Some accompanying slides are 
 here https://mawds.github.io/r-plumber-demo/
 
-
+These are built from `doc/index.Rmd` - following the instructions at https://github.com/tgerke/rmd-with-ci
 
 ## API deployment notes:
 

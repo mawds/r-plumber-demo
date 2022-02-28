@@ -1,0 +1,43 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: render-slides
+
+jobs:
+  render-slides:
+    name: Render slides
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: r-lib/actions/setup-tinytex@v1
+
+      - name: Install required system libs
+        run: sudo apt-get update -y && sudo apt-get install libcurl4-openssl-dev libssl-dev libxml2-dev libsodium-dev
+
+      - uses: r-lib/actions/setup-renv@v1
+      - name: Install rmarkdown
+        run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Render my document to all types
+        run: Rscript -e 'rmarkdown::render("docs/index.Rmd", output_format = "all")'
+
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - uses: EndBug/add-and-commit@v8 # You can change this to use a specific version.
+        with:
+          add: 'docs/index*'
+          author_name: David Mawdsley
+          author_email: david.mawdsley@manchester.ac.uk
+          jdefault_author: github_actor
+          message: 'Render slides (GH action)'
+          pathspec_error_handling: exitImmediately
+
+
+

@@ -117,7 +117,7 @@ function(a, b) {
 ## Dockerfile
 
 ```{r comment=''}
-cat(readLines('diamondpredict/Dockerfile'), sep = '\n')
+cat(readLines('../diamondpredict/Dockerfile'), sep = '\n')
 ```
 
 ## Docker - Build the container:
@@ -149,13 +149,13 @@ docker run -p 127.0.0.1:8000:8000 diamondpredict
   * Set up https access
   * Load balance
 
-`docker-compose` sets up nginx container and dockerland internal network
+`docker-compose` sets up nginx container and "dockerland" internal network
 
 
 ## Authentication (2)
 
 ```{r comment=''}
-cat(readLines('diamondpredict/docker-compose.yml'), sep = '\n')
+cat(readLines('../diamondpredict/docker-compose.yml'), sep = '\n')
 ```
 
 
