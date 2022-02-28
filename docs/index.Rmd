@@ -21,6 +21,8 @@ diamonds <- ggplot2::diamonds
 * [Docker](https://www.docker.com/) used to deploy
 * [nginx](https://www.nginx.com/) used to provide authentication and (eventually) https 
 
+* (Bonus feature) - these slides are rendered using [Github Actions](https://github.com/features/actions) 
+
 
 ## Example data
 
@@ -184,3 +186,13 @@ docker load -i diamondpredict.tar.bz2
 * Docker makes it easier to share and deploy the API
 * Nginx lets us provide authentication, https, load balancing
 
+
+## (Bonus) Github Actions
+
+* R Markdown slides are rendered to html and published using Github Pages
+* Github Actions:
+  * Set up R environment (using renv $\approx$ Python's `venv`)
+  * Render slides
+  * Commit
+  * Triggers Github pages "publish" workflow
+  
