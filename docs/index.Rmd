@@ -90,7 +90,7 @@ exp(predict(mod_diamond, predictvals, interval = "pred"))
 ## Plumber
 
 
-(Closest Python equivalent is probably Flask)
+(Closest Python equivalents are probably [Flask](https://flask.palletsprojects.com/en/2.0.x/) or [FastAPI](https://fastapi.tiangolo.com/))
 
 ```{r, echo = TRUE, eval = FALSE}
 
